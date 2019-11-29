@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name='Indoor Localization'
+rootProject.name = 'Indoor Localization'

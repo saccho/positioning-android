@@ -1,3 +1,10 @@
 <resources>
   <string name="app_name">Indoor Localization</string>
+
+  <string name="main_ip_hint">IP address</string>
+  <string name="main_port_hint">Port</string>
+  <string name="main_message_hint">Message</string>
+  <string name="main_connect_button">Connect</string>
+
+  <string name="result_close_button">Close</string>
 </resources>

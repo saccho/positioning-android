@@ -13,7 +13,6 @@ import androidx.navigation.fragment.navArgs
 import jp.ac.niigata_u.eng.radio.indoorlocalization.R
 import jp.ac.niigata_u.eng.radio.indoorlocalization.databinding.FragmentResultBinding
 import jp.ac.niigata_u.eng.radio.indoorlocalization.ui.main.ResultFragmentArgs
-import kotlinx.android.synthetic.main.fragment_result.*
 
 class ResultFragment : Fragment() {
 
@@ -41,7 +40,7 @@ class ResultFragment : Fragment() {
 
     observeViewModel(viewModel)
 
-    close_button.setOnClickListener {
+    binding.closeButton.setOnClickListener {
       findNavController().navigate(R.id.action_resultFragment_pop)
     }
   }

@@ -1,4 +1,4 @@
-package jp.ac.niigata_u.eng.radio.indoorlocalization.ui.main
+package jp.ac.niigata_u.eng.radio.indoorlocalization.ui.result
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,14 +12,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import jp.ac.niigata_u.eng.radio.indoorlocalization.R
 import jp.ac.niigata_u.eng.radio.indoorlocalization.databinding.FragmentResultBinding
-import jp.ac.niigata_u.eng.radio.indoorlocalization.di.ReadMessageViewModel
+import jp.ac.niigata_u.eng.radio.indoorlocalization.ui.main.ResultFragmentArgs
 import kotlinx.android.synthetic.main.fragment_result.*
 
 class ResultFragment : Fragment() {
 
   private val args: ResultFragmentArgs by navArgs()
   private lateinit var binding: FragmentResultBinding
-  private lateinit var viewModel: ReadMessageViewModel
+  private lateinit var viewModel: ResultViewModel
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -33,11 +33,11 @@ class ResultFragment : Fragment() {
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
 
-    val factory = ReadMessageViewModel.Factory(
+    val factory = ResultViewModel.Factory(
       args.ip, args.port
     )
 
-    viewModel = ViewModelProviders.of(this, factory).get(ReadMessageViewModel::class.java)
+    viewModel = ViewModelProviders.of(this, factory).get(ResultViewModel::class.java)
 
     observeViewModel(viewModel)
 
@@ -51,7 +51,7 @@ class ResultFragment : Fragment() {
     viewModel.closeSocketClient()
   }
 
-  private fun observeViewModel(viewModel: ReadMessageViewModel) {
+  private fun observeViewModel(viewModel: ResultViewModel) {
     viewModel.readMessageLiveData.observe(viewLifecycleOwner, Observer {
       if (it != null) {
         binding.readMessage = it

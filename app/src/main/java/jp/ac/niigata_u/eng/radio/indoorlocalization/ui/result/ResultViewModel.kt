@@ -1,4 +1,4 @@
-package jp.ac.niigata_u.eng.radio.indoorlocalization.di
+package jp.ac.niigata_u.eng.radio.indoorlocalization.ui.result
 
 import android.os.Handler
 import android.os.Message
@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import jp.ac.niigata_u.eng.radio.indoorlocalization.data.api.SocketClient
 
-class ReadMessageViewModel(ip: String, port: Int) : ViewModel() {
+class ResultViewModel(ip: String, port: Int) : ViewModel() {
 
   val readMessageLiveData: MutableLiveData<String> = MutableLiveData()
   private val socketClient: SocketClient
@@ -30,7 +30,7 @@ class ReadMessageViewModel(ip: String, port: Int) : ViewModel() {
   class Factory(private val ip: String, private val port: Int) :
     ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-      return ReadMessageViewModel(ip, port) as T
+      return ResultViewModel(ip, port) as T
     }
   }
 }

@@ -11,15 +11,14 @@ class SocketClient(private val ip: String, private val port: Int) {
 
   private lateinit var socket: Socket
   private lateinit var reader: BufferedReader
-  lateinit var receivedResult: ReceivedResult
+  val receivedResult = ReceivedResult(NetworkState.NO_DATA, mutableListOf())
 
   private fun connect() {
     try {
       socket = Socket(ip, port)
-      receivedResult = ReceivedResult(NetworkState.NO_DATA, mutableListOf())
       Log.d(TAG, "connected socket")
     } catch (e: Exception) {
-      receivedResult = ReceivedResult(NetworkState.ERROR, mutableListOf())
+      receivedResult.state = NetworkState.ERROR
       Log.d(TAG, "$e")
     }
   }

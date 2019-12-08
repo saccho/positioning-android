@@ -1,25 +1,31 @@
 package jp.ac.niigata_u.eng.radio.indoorlocalization.ui.result
 
-import android.os.Handler
-import android.os.Message
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import jp.ac.niigata_u.eng.radio.indoorlocalization.data.api.SocketClient
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ResultViewModel(ip: String, port: Int) : ViewModel() {
 
   val readMessageLiveData: MutableLiveData<String> = MutableLiveData()
-  private val socketClient: SocketClient
+  private val socketClient = SocketClient(ip, port)
 
   init {
-    val handler = object : Handler() {
-      override fun handleMessage(msg: Message) {
-        readMessageLiveData.postValue(msg.obj.toString())
+    read()
+  }
+
+  private fun read() = viewModelScope.launch {
+    kotlin.runCatching {
+      withContext(Dispatchers.Default) {
+        socketClient.read()
       }
+    }.onSuccess {
+      readMessageLiveData.postValue(socketClient.receivedResult.data.toString())
     }
-    socketClient = SocketClient(ip, port, handler)
-    Thread(socketClient).start()
   }
 
   fun closeSocketClient() {

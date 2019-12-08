@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import jp.ac.niigata_u.eng.radio.indoorlocalization.R
 import jp.ac.niigata_u.eng.radio.indoorlocalization.databinding.FragmentResultBinding
-import jp.ac.niigata_u.eng.radio.indoorlocalization.ui.main.ResultFragmentArgs
 
 class ResultFragment : Fragment() {
 

@@ -17,6 +17,8 @@ class SocketClient(private val ip: String, private val port: Int) {
     try {
       socket = Socket(ip, port)
       Log.d(TAG, "connected socket")
+      reader = BufferedReader(InputStreamReader(socket.getInputStream()))
+      Log.d(TAG, "created reader")
     } catch (e: Exception) {
       receivedResult.state = NetworkState.ERROR
       Log.d(TAG, "$e")
@@ -24,9 +26,6 @@ class SocketClient(private val ip: String, private val port: Int) {
   }
 
   fun read() {
-    reader = BufferedReader(InputStreamReader(socket.getInputStream()))
-    Log.d(TAG, "created reader")
-
     // Socketのinputストリーム読み取り
     try {
       reader.use {

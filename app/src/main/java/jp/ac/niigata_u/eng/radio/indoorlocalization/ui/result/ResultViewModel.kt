@@ -45,7 +45,14 @@ class ResultViewModel(ip: String, port: Int) : ViewModel() {
           NetworkState.SUCCESS -> {
             readMessageLiveData.postValue(socketClient.receivedResult.data.toString())
           }
-          NetworkState.CLOSED, NetworkState.ERROR -> return@withContext
+          NetworkState.NO_DATA -> {
+            readMessageLiveData.postValue(socketClient.receivedResult.state.toString())
+          }
+          NetworkState.CLOSED -> return@withContext
+          NetworkState.ERROR -> {
+            readMessageLiveData.postValue(socketClient.receivedResult.state.toString())
+            return@withContext
+          }
           else -> {
           }
         }

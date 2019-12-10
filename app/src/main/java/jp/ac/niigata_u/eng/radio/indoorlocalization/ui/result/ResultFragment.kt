@@ -30,23 +30,15 @@ class ResultFragment : Fragment() {
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
-
     val factory = ResultViewModel.Factory(
       args.ip, args.port
     )
-
     viewModel = ViewModelProviders.of(this, factory).get(ResultViewModel::class.java)
-
     observeViewModel(viewModel)
-
     binding.closeButton.setOnClickListener {
+      viewModel.closeSocketClient()
       findNavController().navigate(R.id.action_resultFragment_pop)
     }
-  }
-
-  override fun onPause() {
-    super.onPause()
-    viewModel.closeSocketClient()
   }
 
   private fun observeViewModel(viewModel: ResultViewModel) {

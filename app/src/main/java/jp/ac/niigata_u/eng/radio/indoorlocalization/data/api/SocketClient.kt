@@ -13,7 +13,7 @@ class SocketClient(private val ip: String, private val port: Int) {
   private lateinit var reader: BufferedReader
   val receivedResult = ReceivedResult(NetworkState.NO_DATA, mutableListOf())
 
-  private fun connect() {
+  fun connect() {
     try {
       socket = Socket(ip, port)
       Log.d(TAG, "connected socket")
@@ -24,8 +24,6 @@ class SocketClient(private val ip: String, private val port: Int) {
   }
 
   fun read() {
-    connect()
-    receivedResult.state = NetworkState.LOADING
     reader = BufferedReader(InputStreamReader(socket.getInputStream()))
     Log.d(TAG, "created reader")
 
@@ -33,13 +31,17 @@ class SocketClient(private val ip: String, private val port: Int) {
     try {
       reader.use {
         while (true) {
-          receivedResult.state = NetworkState.NO_DATA
+          receivedResult.state = NetworkState.LOADING
           val message: String? = it.readLine()
           if (message != null) {
-            Log.d(TAG, "$message (in while)")
+            Log.d(TAG, message)
             receivedResult.state = NetworkState.SUCCESS
             receivedResult.data.add(message)
-          } else break
+          } else {
+            receivedResult.state = NetworkState.CLOSED
+            break
+          }
+          Thread.sleep(SLEEP_TIME)
         }
       }
     } catch (e: Exception) {
@@ -49,6 +51,7 @@ class SocketClient(private val ip: String, private val port: Int) {
   }
 
   fun close() {
+    receivedResult.state = NetworkState.CLOSED
     if (::reader.isInitialized) {
       reader.close()
       Log.d(TAG, "closed reader")
@@ -61,5 +64,6 @@ class SocketClient(private val ip: String, private val port: Int) {
 
   companion object {
     const val TAG = "SocketClient"
+    const val SLEEP_TIME = 500L
   }
 }

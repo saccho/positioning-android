@@ -4,5 +4,6 @@ enum class NetworkState {
   SUCCESS,
   LOADING,
   NO_DATA,
-  ERROR
+  ERROR,
+  CLOSED
 }

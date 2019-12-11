@@ -1,4 +1,4 @@
-package jp.ac.niigata_u.eng.radio.indoorlocalization.ui.main
+package jp.ac.niigata_u.eng.radio.indoorlocalization.ui.home
 
 import android.content.Context
 import android.os.Bundle
@@ -9,15 +9,15 @@ import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import jp.ac.niigata_u.eng.radio.indoorlocalization.R
-import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_home.*
 
-class MainFragment : Fragment() {
+class HomeFragment : Fragment() {
 
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View {
-    return inflater.inflate(R.layout.fragment_main, container, false)
+    return inflater.inflate(R.layout.fragment_home, container, false)
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -28,7 +28,7 @@ class MainFragment : Fragment() {
       val ipAddress = ip.text.toString()
       val portNo = port.text.toString().toInt()
       findNavController().navigate(
-        MainFragmentDirections.actionMainFragmentToResultFragment(
+        HomeFragmentDirections.actionHomeFragmentToResultFragment(
           ip = ipAddress,
           port = portNo
         )

@@ -3,21 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/homeFragment">
 
   <fragment
-      android:id="@+id/mainFragment"
-      android:name="jp.ac.niigata_u.eng.radio.indoorlocalization.ui.main.MainFragment"
-      android:label="main_fragment"
-      tools:layout="@layout/fragment_main">
+      android:id="@+id/homeFragment"
+      android:name="jp.ac.niigata_u.eng.radio.indoorlocalization.ui.home.HomeFragment"
+      android:label="home_fragment"
+      tools:layout="@layout/fragment_home">
     <action
-        android:id="@+id/action_mainFragment_to_resultFragment"
+        android:id="@+id/action_homeFragment_to_resultFragment"
         app:destination="@id/resultFragment" />
   </fragment>
   <fragment
       android:id="@+id/resultFragment"
       android:name="jp.ac.niigata_u.eng.radio.indoorlocalization.ui.result.ResultFragment"
-      android:label="fragment_result"
+      android:label="result_fragment"
       tools:layout="@layout/fragment_result">
     <argument
         android:name="ip"
@@ -27,6 +27,6 @@
         app:argType="integer" />
     <action
         android:id="@+id/action_resultFragment_pop"
-        app:popUpTo="@id/mainFragment" />
+        app:popUpTo="@id/homeFragment" />
   </fragment>
 </navigation>

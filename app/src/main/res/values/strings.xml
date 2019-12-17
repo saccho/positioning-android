@@ -6,5 +6,7 @@
   <string name="main_message_hint">Message</string>
   <string name="main_connect_button">Connect</string>
 
+  <string name="result_message_hint">Message</string>
   <string name="result_close_button">Close</string>
+  <string name="result_send_button">Send</string>
 </resources>

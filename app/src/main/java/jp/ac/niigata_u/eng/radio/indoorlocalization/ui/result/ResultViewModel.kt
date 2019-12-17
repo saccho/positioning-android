@@ -37,6 +37,16 @@ class ResultViewModel(ip: String, port: Int) : ViewModel() {
     }
   }
 
+  private fun write(message: String?) = viewModelScope.launch {
+    if (message == null) {
+      return@launch
+    } else {
+      withContext(Dispatchers.IO) {
+        socketClient.write(message)
+      }
+    }
+  }
+
   private fun observeReceivedResult() = viewModelScope.launch {
     withContext(Dispatchers.Default) {
       while (true) {

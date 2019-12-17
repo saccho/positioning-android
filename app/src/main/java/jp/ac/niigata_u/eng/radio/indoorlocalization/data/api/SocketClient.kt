@@ -1,8 +1,6 @@
 package jp.ac.niigata_u.eng.radio.indoorlocalization.data.api
 
 import android.util.Log
-import jp.ac.niigata_u.eng.radio.indoorlocalization.data.NetworkState
-import jp.ac.niigata_u.eng.radio.indoorlocalization.data.ReceivedResult
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.Socket
@@ -11,7 +9,10 @@ class SocketClient(private val ip: String, private val port: Int) {
 
   private lateinit var socket: Socket
   private lateinit var reader: BufferedReader
-  val receivedResult = ReceivedResult(NetworkState.NO_DATA, mutableListOf())
+  val receivedResult = ReceivedResult(
+    NetworkState.NO_DATA,
+    mutableListOf()
+  )
 
   fun connect() {
     try {

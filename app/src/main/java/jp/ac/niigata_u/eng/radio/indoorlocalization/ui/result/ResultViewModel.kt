@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import jp.ac.niigata_u.eng.radio.indoorlocalization.data.api.NetworkState
-import jp.ac.niigata_u.eng.radio.indoorlocalization.data.api.SocketClient
+import jp.ac.niigata_u.eng.radio.indoorlocalization.data.remote.NetworkState
+import jp.ac.niigata_u.eng.radio.indoorlocalization.data.remote.SocketClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

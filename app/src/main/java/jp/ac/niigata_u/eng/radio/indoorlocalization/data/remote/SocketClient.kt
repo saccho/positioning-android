@@ -1,4 +1,4 @@
-package jp.ac.niigata_u.eng.radio.indoorlocalization.data.api
+package jp.ac.niigata_u.eng.radio.indoorlocalization.data.remote
 
 import android.util.Log
 import java.io.BufferedReader

@@ -11,14 +11,14 @@
       android:label="home_fragment"
       tools:layout="@layout/fragment_home">
     <action
-        android:id="@+id/action_homeFragment_to_resultFragment"
-        app:destination="@id/resultFragment" />
+        android:id="@+id/action_homeFragment_to_sendFragment"
+        app:destination="@id/sendFragment" />
   </fragment>
   <fragment
-      android:id="@+id/resultFragment"
-      android:name="jp.ac.niigata_u.eng.radio.indoorlocalization.ui.result.ResultFragment"
-      android:label="result_fragment"
-      tools:layout="@layout/fragment_result">
+      android:id="@+id/sendFragment"
+      android:name="jp.ac.niigata_u.eng.radio.indoorlocalization.ui.send.SendFragment"
+      android:label="send_fragment"
+      tools:layout="@layout/fragment_send">
     <argument
         android:name="ip"
         app:argType="string" />
@@ -26,7 +26,7 @@
         android:name="port"
         app:argType="integer" />
     <action
-        android:id="@+id/action_resultFragment_pop"
+        android:id="@+id/action_sendFragment_pop"
         app:popUpTo="@id/homeFragment" />
   </fragment>
 </navigation>

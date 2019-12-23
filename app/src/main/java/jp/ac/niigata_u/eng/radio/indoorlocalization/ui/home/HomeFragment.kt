@@ -47,7 +47,7 @@ class HomeFragment : Fragment() {
       viewModel.saveIP(ip)
       viewModel.savePort(port)
       findNavController().navigate(
-        HomeFragmentDirections.actionHomeFragmentToResultFragment(
+        HomeFragmentDirections.actionHomeFragmentToSendFragment(
           ip = ip,
           port = port
         )

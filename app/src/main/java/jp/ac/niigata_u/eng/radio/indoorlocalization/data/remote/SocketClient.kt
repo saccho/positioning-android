@@ -20,13 +20,10 @@ class SocketClient(private val ip: String, private val port: Int) {
     NetworkState.NO_DATA, ""
   )
 
-  fun connect() {
+  private fun connect() {
     try {
       socket = Socket(ip, port)
       Log.d(TAG, "connected socket")
-      reader = BufferedReader(InputStreamReader(socket.getInputStream()))
-      writer = BufferedWriter(OutputStreamWriter(socket.getOutputStream()))
-      Log.d(TAG, "created reader")
     } catch (e: Exception) {
       receivedResult.state = NetworkState.ERROR
       Log.d(TAG, "$e")
@@ -34,7 +31,8 @@ class SocketClient(private val ip: String, private val port: Int) {
   }
 
   fun read() {
-    // Socketのinputストリーム読み取り
+    connect()
+    reader = BufferedReader(InputStreamReader(socket.getInputStream()))
     try {
       reader.use {
         while (true) {
@@ -58,17 +56,14 @@ class SocketClient(private val ip: String, private val port: Int) {
   }
 
   fun write(message: String) {
+    connect()
+    writer = BufferedWriter(OutputStreamWriter(socket.getOutputStream()))
     try {
       writer.use {
-        sendResult.state = NetworkState.SENDING
         it.write(message)
         Log.d(TAG, message)
-        sendResult.state = NetworkState.SUCCESS
-        sendResult.data = message
-        sendResult.state = NetworkState.CLOSED
       }
     } catch (e: Exception) {
-      sendResult.state = NetworkState.ERROR
       Log.d(TAG, "$e")
     }
   }

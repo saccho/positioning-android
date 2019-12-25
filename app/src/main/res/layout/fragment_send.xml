@@ -6,8 +6,8 @@
   <data>
 
     <variable
-        name="readMessage"
-        type="String" />
+        name="acceleration"
+        type="jp.ac.niigata_u.eng.radio.indoorlocalization.data.local.Acceleration" />
   </data>
 
   <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,21 +24,102 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/send">
 
-      <androidx.core.widget.NestedScrollView
-          android:id="@+id/scroll_view"
-          android:layout_width="match_parent"
+      <LinearLayout
+          android:layout_width="0dp"
           android:layout_height="0dp"
-          android:layout_marginStart="32dp"
-          android:layout_marginEnd="32dp"
+          android:orientation="vertical"
+          android:gravity="center"
+          tools:context=".ui.send.acceleration.AccelerationFragment"
           app:layout_constraintTop_toTopOf="parent"
-          app:layout_constraintBottom_toBottomOf="parent">
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
-            android:id="@+id/result_text"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/x"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@{readMessage}" />
-      </androidx.core.widget.NestedScrollView>
+            android:layout_height="wrap_content">
+
+          <TextView
+              android:id="@+id/x_description"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:text="@string/acceleration_x"
+              android:gravity="end"
+              app:layout_constraintTop_toTopOf="parent"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintEnd_toStartOf="@id/x_value" />
+
+          <TextView
+              android:id="@+id/x_value"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:text="@{acceleration.x}"
+              android:gravity="start"
+              app:layout_constraintTop_toTopOf="parent"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintStart_toEndOf="@id/x_description"
+              app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/y"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+          <TextView
+              android:id="@+id/y_description"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:text="@string/acceleration_y"
+              android:gravity="end"
+              app:layout_constraintTop_toTopOf="parent"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintEnd_toStartOf="@id/y_value" />
+
+          <TextView
+              android:id="@+id/y_value"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:text="@{acceleration.y}"
+              android:gravity="start"
+              app:layout_constraintTop_toTopOf="parent"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintStart_toEndOf="@id/y_description"
+              app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/z"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+          <TextView
+              android:id="@+id/z_description"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:text="@string/acceleration_z"
+              android:gravity="end"
+              app:layout_constraintTop_toTopOf="parent"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintEnd_toStartOf="@id/z_value" />
+
+          <TextView
+              android:id="@+id/z_value"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:text="@{acceleration.z}"
+              android:gravity="start"
+              app:layout_constraintTop_toTopOf="parent"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintStart_toEndOf="@id/z_description"
+              app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+      </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

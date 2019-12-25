@@ -9,4 +9,8 @@
   <string name="result_message_hint">Message</string>
   <string name="result_close_button">Close</string>
   <string name="result_send_button">Send</string>
+
+  <string name="acceleration_x">x: </string>
+  <string name="acceleration_y">y: </string>
+  <string name="acceleration_z">z: </string>
 </resources>

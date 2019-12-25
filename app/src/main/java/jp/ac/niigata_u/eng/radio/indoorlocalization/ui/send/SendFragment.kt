@@ -15,7 +15,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import jp.ac.niigata_u.eng.radio.indoorlocalization.R
-import jp.ac.niigata_u.eng.radio.indoorlocalization.data.local.Acceleration
 import jp.ac.niigata_u.eng.radio.indoorlocalization.databinding.FragmentSendBinding
 
 class SendFragment : Fragment(), SensorEventListener {
@@ -25,11 +24,11 @@ class SendFragment : Fragment(), SensorEventListener {
   private lateinit var viewModel: SendViewModel
   private lateinit var sensorManager: SensorManager
   private lateinit var sensor: Sensor
-  private val acceleration = Acceleration(0f, 0f, 0f)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    sensorManager = requireContext().getSystemService(Context.SENSOR_SERVICE) as SensorManager
+    sensorManager =
+      requireContext().getSystemService(Context.SENSOR_SERVICE) as SensorManager
     sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
   }
 
@@ -44,9 +43,7 @@ class SendFragment : Fragment(), SensorEventListener {
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
-    val factory = SendViewModel.Factory(
-      args.ip, args.port
-    )
+    val factory = SendViewModel.Factory(args.ip, args.port)
     viewModel = ViewModelProviders.of(this, factory).get(SendViewModel::class.java)
     setSendMessageListener()
   }
@@ -74,11 +71,8 @@ class SendFragment : Fragment(), SensorEventListener {
   }
 
   override fun onSensorChanged(event: SensorEvent?) {
-    if (event != null && event.sensor.type == Sensor.TYPE_ACCELEROMETER) {
-      acceleration.x = event.values[0]
-      acceleration.y = event.values[1]
-      acceleration.z = event.values[2]
-      binding.acceleration = acceleration
+    if (event != null) {
+      binding.acceleration = viewModel.getAcceleration(event)
     }
   }
 
